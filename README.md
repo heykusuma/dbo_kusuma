@@ -13,8 +13,15 @@ Search)
 How to run:
 
 - Composer update/install
-- Run migration -> php artisan migrate
-Search)
+- Change .env.example to .env
+- build and run docker with sail command -> ./vendor/bin/sail up
+- Run migration inside docker using sail, open new terminal(dont stop the container) and run command -> ./vendor/bin/sail artisan migrate
+- Project already start, just open localhost for the 
 
+What's good?
+- Design Pattern
+- Using JWT
+- Search with Laravel Scoout(Algolia)
+- Running in Docker with laravel sail
 ## Contributor Laravel
 -- Just me --
