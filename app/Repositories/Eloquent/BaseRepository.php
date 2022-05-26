@@ -23,6 +23,11 @@ abstract class BaseRepository
         return $this->modelName($this->model)->with($with)->orderBy($order, 'desc')->paginate(10);
     }
 
+    public function getAllSearch($request ,string $order)
+    {
+        return $this->modelName($this->model)->search($request)->orderBy($order, 'desc')->paginate(10);
+    }
+
     public function getOne(int $id, array $with)
     {
         return $this->modelName($this->model)->with($with)->where('id', '=', $id)->first();

@@ -20,9 +20,13 @@ class OrderService implements FullRestInterface{
         $this->order = $orderRepository;
     }
 
-    public function getAll(): JsonResponse
+    public function getAll($request): JsonResponse
     {
-        $data = $this->order->getAll([], 'id');
+        $data = $this->order->getAll(['customer'], 'id');
+
+        if (!is_null($request)) {
+            $data = $this->order->getAllSearch($request, 'id');
+        }
 
         if ($data->isEmpty()) {
             throw new NotFoundHttpException;

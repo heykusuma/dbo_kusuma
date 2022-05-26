@@ -19,9 +19,13 @@ class CustomerService implements FullRestInterface{
         $this->customer = $customerRepository;
     }
 
-    public function getAll(): JsonResponse
+    public function getAll($request): JsonResponse
     {
-        $data = $this->customer->getAll([], 'id');
+        $data = $this->customer->getAll(['order'], 'id');
+
+        if (!is_null($request)) {
+            $data = $this->customer->getAllSearch($request, 'id');
+        }
 
         if ($data->isEmpty()) {
             throw new NotFoundHttpException;

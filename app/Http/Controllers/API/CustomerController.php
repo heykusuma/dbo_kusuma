@@ -13,12 +13,13 @@ class CustomerController extends Controller
 
     public function __construct(CustomerService $customerService)
     {
+        $this->middleware('auth:api');
         $this->customer = $customerService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return $this->customer->getAll();
+        return $this->customer->getAll($request->search);
     }
 
     public function store(CustomerRequest $request)
